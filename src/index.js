@@ -1,7 +1,5 @@
-import videojs from "video.js";
-import playlist from "videojs-playlist";
-import playlistUi from "videojs-playlist-ui";
+import ReactDOM from "react-dom";
+import { App } from "./App";
 
-new videojs("vid1", function onPlayerReady() {
-	this.play();
-});
+const app = document.getElementById("app");
+ReactDOM.render(<App />, app);
