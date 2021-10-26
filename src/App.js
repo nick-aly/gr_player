@@ -15,6 +15,10 @@ const channels = new Array(
 		src: "https://livestar.siliconweb.com/media/star1/star1mediumhd.m3u8",
 	},
 	{
+		name: "Megka",
+		src: "https://streamcdnm17-c98db5952cb54b358365984178fb898a.msvdn.net/live/S86713049/gonOwuUacAxM/playlist.m3u8",
+	},
+	{
 		name: "Skai",
 		src: "https://skai-live.siliconweb.com/media/cambria4/index.m3u8",
 	},
