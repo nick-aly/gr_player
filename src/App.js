@@ -1,6 +1,6 @@
 import React from "react";
 import VideoJS from "./VideoJs";
-import channels from './channels'
+import channels from './channels.js'
 
 
 export const App = () => {
