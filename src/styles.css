@@ -1,3 +1,32 @@
 @import '../node_modules/video.js/dist/video-js.css';
 @import '../node_modules/videojs-playlist-ui/dist/videojs-playlist-ui.css';
 
+body{
+    height: 100vh;
+    padding: 0;
+    margin: 0;
+}
+.btn-list{
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    width: 200px;
+}
+.layout{
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+}
+
+.video-container{
+    height: 100%;
+    width: 100%;
+    padding: 2px;
+}
+
+.channel-btn{
+    height: 50px;
+    margin: 3px;
+    font-weight: bold;
+    font-size: large;
+}

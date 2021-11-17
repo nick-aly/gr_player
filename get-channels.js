@@ -28,7 +28,7 @@ const req = https.request(options, (res) => {
 		const str = d.toString();
 
 		st = str[273];
-        find(d)
+		find(d)
 
 		for (ch of d) {
 			//console.log(ch.toString())
@@ -62,14 +62,14 @@ const req = https.request(options, (res) => {
 			/*
 			if (st === 'tvg-logo="') {
 				let j = i+1;
-                let url = ''
+				let url = ''
 				while (str[j] != '"') {
 					url = url.concat(str[j]);
 					j = j + 1;
 				}
-                console.log(url)
+				console.log(url)
 				games.push[url];
-                url = ''
+				url = ''
 			} */
 
 			// console.log(str[i])
@@ -85,26 +85,26 @@ req.on("error", (error) => {
 
 req.end();
 
-var parsedManifest = parser.manifest;
+
 
 function test(bf) {
 	const b = bf.replace("#EXIF", "asd");
 }
 
-function find(bytes){
-    var s = Buffer.from('tvg-logo="');
-    var b = Buffer.from(',')
-    let lastPos = 0
-    let urls = []
-    while(lastPos!=-1){
-        let start = bytes.indexOf(s,lastPos)
-        let sep = bytes.indexOf(b,start)
-        let end = bytes.indexOf('\n',sep)
-        let dif = bytes.slice(sep,end);
-        let url = bytes.slice(start,sep)
-        urls.push(url.toString())
-        console.log(dif.toString())
-        lastPos = start != -1 ? start+s.length : -1
-    }
-    console.log(urls.length)
+function find(bytes) {
+	var s = Buffer.from('tvg-logo="');
+	var b = Buffer.from(',')
+	let lastPos = 0
+	let urls = []
+	while (lastPos != -1) {
+		let start = bytes.indexOf(s, lastPos)
+		let sep = bytes.indexOf(b, start)
+		let end = bytes.indexOf('\n', sep)
+		let dif = bytes.slice(sep, end);
+		let url = bytes.slice(start, sep)
+		urls.push(url.toString())
+		console.log(dif.toString())
+		lastPos = start != -1 ? start + s.length : -1
+	}
+	console.log(urls.length)
 }
