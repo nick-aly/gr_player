@@ -1,4 +1,5 @@
-export default channels = new Array(
+
+const channels = new Array(
     {
         name: "Alpha",
         src: "https://alphatvlive.siliconweb.com/1/Y2Rsd1lUcUVoajcv/UVdCN25h/hls/bpfkbp2c/2728/chunklist.m3u8",
@@ -56,3 +57,5 @@ export default channels = new Array(
         src: "http://ert-live-bcbs15228.siliconweb.com/media/ert_news/ert_news.m3u8",
     }
 );
+
+export default channels
