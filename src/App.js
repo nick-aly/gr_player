@@ -7,11 +7,12 @@ export const App = () => {
 	const playerRef = React.useRef(null);
 
 	const videoJsOptions = {
-		autoplay: false,
+		autoplay: true,
 		controls: true,
 		responsive: true,
 		fluid: true,
-		sources: channels.map((channel) => channel.src),
+		liveui: true,
+	
 	};
 
 	const handleChangeEvent = (event) => {
