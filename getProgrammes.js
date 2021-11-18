@@ -1,8 +1,6 @@
-import https from "https";
-import { parse } from "node-html-parser";
-import axios from "axios";
-import fs from "fs";
-
+const parse = require("node-html-parser").default;
+const axios = require("axios");
+const fs = require("fs");
 async function getProgramms() {
 	const response = await axios.get("http://www.programmatileorasis.gr");
 	const root = parse(response.data);

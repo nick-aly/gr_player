@@ -2,7 +2,6 @@
 	"name": "gr_player",
 	"version": "1.0.0",
 	"description": "",
-	"type": "module",
 	"source": "src/index.html",
 	"scripts": {
 		"start": "parcel",
