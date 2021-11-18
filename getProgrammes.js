@@ -23,6 +23,7 @@ async function getProgramms() {
 
 		return { channel: chName, programms: rt };
 	});
+	// pop nikelodaon and
 	pipi.pop();
 	pipi.pop();
 	return pipi;

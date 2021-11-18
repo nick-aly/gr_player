@@ -39,21 +39,33 @@ body {
 
 .programme {
 	position: fixed;
-	top: 400px;
+	top: 200px;
 	left: 500px;
-    width: 500px;
-    height: 500px;
-    overflow: hidden;
-    z-index: 10;
-    background-color: white;
-    color: black
+	width: 500px;
+
+	overflow: hidden;
+	z-index: 10;
+	background-color: white;
+	color: black;
 }
 
-.list{
-    width:150px;
-    height: 50px;
-    color:lightblue;
-    display: flex;
-    flex-direction: column;
+.list {
+	width: 150px;
+	height: 50px;
+	color: lightblue;
+	display: flex;
+	flex-direction: column;
+}
 
+.pr-col {
+	flex-direction: row;
+	display: flex;
+}
+
+.blue{
+	background-color: lightblue;
+}
+.programm-time {
+	margin-right: 10px;
+	margin-bottom: 2px;
 }

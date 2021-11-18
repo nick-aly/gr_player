@@ -13,14 +13,18 @@ export const App = () => {
 		let _hoveringChannel = programme.find(
 			(channel) => channel.channel == chn
 		);
-		setHoveringChannel(_hoveringChannel);
-		console.log(_hoveringChannel);
+
+		if (_hoveringChannel != undefined) {
+			setHoveringChannel(_hoveringChannel);
+		} else {
+			setHoveringChannel();
+		}
 		setIsHovering(true);
 	};
 
 	const handleMouseOut = (channel) => {
 		setHoveringChannel();
-		console.log("out");
+
 		setIsHovering(false);
 	};
 
@@ -34,9 +38,7 @@ export const App = () => {
 		liveui: true,
 	};
 
-	const handleChangeEvent = (event) => {
-		console.log(event);
-	};
+	const handleChangeEvent = (event) => {};
 
 	const changePlayerOptions = (src) => {
 		// you can update the player through the Video.js player instance
@@ -51,19 +53,36 @@ export const App = () => {
 		playerRef.current = player;
 
 		// you can handle player events here
-		player.on("waiting", () => {
-			console.log("player is waiting");
-		});
+		player.on("waiting", () => {});
 
-		player.on("dispose", () => {
-			console.log("player will dispose");
-		});
+		player.on("dispose", () => {});
 	};
 
-	const Programm = (chn) => {
+	const Programm = ({ chn }) => {
+		const now = new Date().getHours();
+
+		const programCols = chn ? (
+			chn.programms.map((d, index) => (
+				<div
+					key={index}
+					className={`${
+						now == d.programmTime.split(":")[0] ||
+						now - 1 == d.programmTime.split(":")[0] ||
+						now + 1 == d.programmTime.split(":")[0]
+							? "blue"
+							: ""
+					} pr-col`}
+				>
+					<div className="programm-time">{d.programmTime}</div>
+					<div className="programm-name">{d.programmName}</div>
+				</div>
+			))
+		) : (
+			<div>Epty</div>
+		);
 		return (
 			<div className="programme">
-				{hoveringChannel ? JSON.stringify(hoveringChannel) : "empty"}
+				{hoveringChannel ? programCols : "empty"}
 			</div>
 		);
 	};

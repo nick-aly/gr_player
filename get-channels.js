@@ -1,6 +1,6 @@
 const m3u8Parser = require("m3u8-parser");
 const https = require("https");
-const { Buffer } = require('buffer');;
+const { Buffer } = require("buffer");
 var parser = new m3u8Parser.Parser();
 
 const options = {
@@ -19,8 +19,6 @@ function* hexFormatValues(buffer) {
 }
 
 const req = https.request(options, (res) => {
-	console.log(`statusCode: ${res.statusCode}`);
-
 	var games = [];
 
 	res.on("data", (d) => {
@@ -28,10 +26,9 @@ const req = https.request(options, (res) => {
 		const str = d.toString();
 
 		st = str[273];
-		find(d)
+		find(d);
 
 		for (ch of d) {
-			//console.log(ch.toString())
 		}
 		for ([x, idx] of hexFormatValues(d)) {
 		}
@@ -85,26 +82,19 @@ req.on("error", (error) => {
 
 req.end();
 
-
-
-function test(bf) {
-	const b = bf.replace("#EXIF", "asd");
-}
-
 function find(bytes) {
 	var s = Buffer.from('tvg-logo="');
-	var b = Buffer.from(',')
-	let lastPos = 0
-	let urls = []
+	var b = Buffer.from(",");
+	let lastPos = 0;
+	let urls = [];
 	while (lastPos != -1) {
-		let start = bytes.indexOf(s, lastPos)
-		let sep = bytes.indexOf(b, start)
-		let end = bytes.indexOf('\n', sep)
+		let start = bytes.indexOf(s, lastPos);
+		let sep = bytes.indexOf(b, start);
+		let end = bytes.indexOf("\n", sep);
 		let dif = bytes.slice(sep, end);
-		let url = bytes.slice(start, sep)
-		urls.push(url.toString())
-		console.log(dif.toString())
-		lastPos = start != -1 ? start + s.length : -1
+		let url = bytes.slice(start, sep);
+		urls.push(url.toString());
+
+		lastPos = start != -1 ? start + s.length : -1;
 	}
-	console.log(urls.length)
 }
