@@ -1,9 +1,29 @@
-import React from "react";
+import React, { useState } from "react";
 import VideoJS from "./VideoJs";
-import channels from './channels.js'
+import channels from "./channels.js";
+import { programme } from "./programme";
 
+function calculataTime() {}
 
 export const App = () => {
+	const [isHovering, setIsHovering] = useState(false);
+	const [hoveringChannel, setHoveringChannel] = useState();
+
+	const handleMouseOver = (chn) => {
+		let _hoveringChannel = programme.find(
+			(channel) => channel.channel == chn
+		);
+		setHoveringChannel(_hoveringChannel);
+		console.log(_hoveringChannel);
+		setIsHovering(true);
+	};
+
+	const handleMouseOut = (channel) => {
+		setHoveringChannel();
+		console.log("out");
+		setIsHovering(false);
+	};
+
 	const playerRef = React.useRef(null);
 
 	const videoJsOptions = {
@@ -12,7 +32,6 @@ export const App = () => {
 		responsive: true,
 		fluid: true,
 		liveui: true,
-	
 	};
 
 	const handleChangeEvent = (event) => {
@@ -28,12 +47,6 @@ export const App = () => {
 		playerRef.current.src([{ src: src }]);
 	};
 
-	const channelButtons = channels.map((channel, index) => (
-		<button className="channel-btn" key={index} onClick={() => changePlayerOptions(channel.src)}>
-			{channel.name}
-		</button>
-	));
-
 	const handlePlayerReady = (player) => {
 		playerRef.current = player;
 
@@ -47,16 +60,35 @@ export const App = () => {
 		});
 	};
 
-	return (
-		<>
-			<div className="layout">
-				<div className='btn-list'>{channelButtons}</div>
-				<div className="video-container">
-					<VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
-				</div>
-
+	const Programm = (chn) => {
+		return (
+			<div className="programme">
+				{hoveringChannel ? JSON.stringify(hoveringChannel) : "empty"}
 			</div>
-		</>
+		);
+	};
 
+	const channelButtons = channels.map((channel, index) => {
+		return (
+			<button
+				className="channel-btn"
+				onMouseOver={() => handleMouseOver(channel.name)}
+				onMouseOut={() => handleMouseOut(channel)}
+				key={index}
+				onClick={() => changePlayerOptions(channel.src)}
+			>
+				{channel.name}
+			</button>
+		);
+	});
+
+	return (
+		<div className="layout">
+			{isHovering && <Programm chn={hoveringChannel} />}
+			<div className="btn-list">{channelButtons}</div>
+			<div className="video-container">
+				<VideoJS options={videoJsOptions} onReady={handlePlayerReady} />
+			</div>
+		</div>
 	);
 };

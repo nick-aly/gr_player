@@ -1,6 +1,7 @@
 import https from "https";
 import { parse } from "node-html-parser";
 import axios from "axios";
+import fs from "fs";
 
 async function getProgramms() {
 	const response = await axios.get("http://www.programmatileorasis.gr");
@@ -19,9 +20,17 @@ async function getProgramms() {
 				programmTime: chHourTxt[index],
 			};
 		});
+
 		return { channel: chName, programms: rt };
 	});
+	pipi.pop();
+	pipi.pop();
 	return pipi;
 }
 
-getProgramms().then((data) => console.log(data));
+getProgramms().then((data) => {
+	fs.writeFileSync(
+		"src/programme.js",
+		"export const programme =" + JSON.stringify(data)
+	);
+});
