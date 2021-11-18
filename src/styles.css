@@ -48,3 +48,12 @@ body {
     background-color: white;
     color: black
 }
+
+.list{
+    width:150px;
+    height: 50px;
+    color:lightblue;
+    display: flex;
+    flex-direction: column;
+
+}
