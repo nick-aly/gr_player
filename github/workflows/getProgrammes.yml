@@ -1,0 +1,13 @@
+name: Get Daily Programme
+on:
+    schedule:
+        # “At 20:00 on every day-of-week from Monday through Friday.”
+        # https://crontab.guru/#0_20_*_*_1-5
+        - cron: "* * * * *"
+jobs:
+    build:
+        name: Build Hook
+        runs-on: ubuntu-latest
+        steps:
+            - name: Curl request
+              run: curl -X POST -d {} https://api.netlify.com/build_hooks/61962d1bd09b68f3cf12d7d6
